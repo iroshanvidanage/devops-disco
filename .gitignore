@@ -1,0 +1,17 @@
+# exclude any env setups
+env/
+venv/
+# exclude python cache files
+__pycache__/
+*.pyc
+# exclude IDE specific files
+.vscode/
+# iac files
+*.tfstate
+.vimrc
+.vim/
+*.swp
+*.swo
+Vagrantfile
+.vagrant/
+vagrant.tar.gz
