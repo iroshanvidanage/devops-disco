@@ -103,7 +103,8 @@ user { 'bob':
 
 - The puppet server configs are located in `/etc/sysconfig` dir in file `puppetserver`
 
-Note: Edit the memory requirements as needed.
+> [!Note]
+> Edit the memory requirements as needed.
 
 - Start the puppet server `systemctl start puppetserver`
 
