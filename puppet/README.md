@@ -223,6 +223,10 @@ user { 'bob':
     - Some applications have non-standard services.
     - We can override behaviour using the following attributes.
         - `restart`, `stop`, `start`, `status`
+- Notify : Non impacting resource type that causes a notice message to be displayed.
+```puppet
+notify { 'Hello World!':}
+```
 
 
 
