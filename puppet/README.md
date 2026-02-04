@@ -67,6 +67,7 @@ user { 'bob':
 - A module is installed in `<modulepath>/<modulename>`
 - Classes are stored in a folder called `manifests/`.
 - The base class for the module is named as the module name and sits in a file called `init.pp`.
+- `puppet module list` shos the modules and the paths they live in.
 
 
 ## Server & Agent
@@ -140,3 +141,73 @@ user { 'bob':
     - `puppet config print ssldir` shows the ssl cert directory: default `/etc/puppetlabs/puppet/ssl`.
     - `rm -rf *` removes everything from the directory.
 - Now reinitialize the agent.
+
+
+### Facter
+
+- Facter gathers a wide variety of information about the agent mnode.
+- Puppet can use these facts to determine how to configure resources.
+- Easily extendable to add your own facts.
+- Puppet agent sends facts to the server on every run.
+- We can use the command `facter` to view them `facter | more`.
+- `facter --help | more` view the attributes and flags.
+    - `facter operatingsystem`
+    - `facter osfamily`
+    - `facter hypervisors`
+    - `facter identity`
+    - `facter memory`
+
+
+### A Puppet Run
+
+1. Initially the SSL authentication.
+2. The Agent machine gathers the facts and sends to the Puppet Server (master).
+3. The Puppet server sends all the resources in the [Catalog](#catalog) to the Agent against the running state of the system and with RAL enforces changes when necessary.
+4. The Agent sends a detailed report back to the Server with all the changes that have been made.
+
+
+### Catalog
+
+- The Puppet master compile all the resources defined in manifests in to the Catalog.
+- Contains all managed resources and the state they should be in.
+- Puppet agent uses the RAL to compare Running State to catalog (Desired State).
+- Changes are enforces where drift is detected.
+
+
+### Classification
+
+- When an Agent authenticated with the Server the Agent is being classified.
+- It means that the Server identifies which classes should be applied to the Agent.
+- Then the Catalog is compiled.
+- Puppet classifies in two ways.
+- External node classifier (ENC) used in prod envs.
+    - Enterprise Console: ships with Puppet enterprise.
+    - Foreman: open source tool.
+- When an Agent request comes to the Server, the Puppet master will query the ENC and finds out what classes should be applied to that particular node.
+- Manifest file based classification (site.pp): The mose simple and lightweight form of classification.
+
+
+### Manifest based Classification
+
+- Puppet automatically reads in a manifest file called `site.pp`.
+- This can be find out by using `puppet config` command in the manifest directory.
+- Within the `site.pp` we can use [node definitions](#node-definition) to specify this classification.
+
+
+### Node Definition
+
+- The node definition is as follows.
+- We have the `node` keyword, followed by the cert name of the node, and in between brackets we can include any Puppet code we need to.
+- It's recommended only to use a node definition to include classes, not to include any node-level logic.
+- [`site.pp`](./site.pp)
+- `puppet config 
+
+
+### Apply puppet classes to nodes.
+
+- To apply any changes to local Puppet Server; `puppet apply -e 'include sysadmins'` execute in the Puppet Server.
+- To applu to Agent node we need to classify the class to the Agent node in `site.pp`.
+- `puppet config print manifest` should shows the Puppet Server would search for manifests.
+    - `/etc/puppetlabs/code/environments/production/manifests` default location.
+
+
