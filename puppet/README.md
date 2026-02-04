@@ -211,3 +211,13 @@ user { 'bob':
     - `/etc/puppetlabs/code/environments/production/manifests` default location.
 
 
+
+## The Puppet Language
+
+
+### More Resources
+
+- [Package](packages.pp) : Ensure absent, installed latest or a specific version.
+
+
+
