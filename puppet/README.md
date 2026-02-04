@@ -227,7 +227,12 @@ user { 'bob':
 ```puppet
 notify { 'Hello World!':}
 ```
-
+- [Exec](exec.pp) : Execute any arbitrary command.
+    - Not a replacement for a type and provider.
+    - Use sparingly.
+    - It's not a replacement for a proper type and provider.
+    - Not idempotent by default.
+    - Can be made idempotent by using `creates`, `onlyif` or `unless`
 
 
 
