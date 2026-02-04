@@ -9,6 +9,6 @@ exec { 'run_command':
 exec { 'run_script':
   command => '/path/to/your/script.sh',
   path    => ['/usr/bin', '/bin'], # Optional: specify the PATH for the script
-  creates => '/path/to/created/file',
+  creates => '/path/to/created/file', # Optional: only run if this file does not exist
   require => Exec['run_command'], # Optional: ensure this runs after 'run_command'}
 }
