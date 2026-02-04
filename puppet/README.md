@@ -218,6 +218,12 @@ user { 'bob':
 ### More Resources
 
 - [Package](packages.pp) : Ensure absent, installed latest or a specific version.
+- [Service](services.pp) : Ensure can be `running` or `stopped`.
+    - Enable makes the service start at boot time and can be `true` or `false`.
+    - Some applications have non-standard services.
+    - We can override behaviour using the following attributes.
+        - `restart`, `stop`, `start`, `status`
+
 
 
 
