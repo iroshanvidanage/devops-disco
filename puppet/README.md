@@ -238,3 +238,8 @@ notify { 'Hello World!':}
     - Resource titles and namevars must be unique.
 
 
+### Puppet describe
+
+- To view list of available resources `puppet describe --list`
+- To view the configurable attributes of a resource type `puppet describe <resource type>`
+
