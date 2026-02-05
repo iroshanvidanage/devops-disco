@@ -233,6 +233,8 @@ notify { 'Hello World!':}
     - It's not a replacement for a proper type and provider.
     - Not idempotent by default.
     - Can be made idempotent by using `creates`, `onlyif` or `unless`
-
+- [Namevar](namevars_examples.pp) : Puppet resources must be unique, normally the title of the resource is used as the unique identifier.
+    - Each resource type also has one or more attributes that are `namevars`.
+    - Resource titles and namevars must be unique.
 
 
