@@ -191,6 +191,7 @@ user { 'bob':
 
 - Puppet automatically reads in a manifest file called `site.pp`.
 - This can be find out by using `puppet config` command in the manifest directory.
+    - `/etc/puppetlabs/code/environments/production/manifests/site.pp`
 - Within the `site.pp` we can use [node definitions](#node-definition) to specify this classification.
 
 
