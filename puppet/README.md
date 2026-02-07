@@ -243,3 +243,41 @@ notify { 'Hello World!':}
 - To view list of available resources `puppet describe --list`
 - To view the configurable attributes of a resource type `puppet describe <resource type>`
 
+
+## File Serving
+
+### File resource type
+
+- Manage files, directories and symlinks.
+- `ensure` can be `file`, symlink or directory.
+- `owner`, `group` and `mode` can be used to configure file properties.
+- We can manage content statically or dynamically.
+- `source` specifies a location on the puppet server to serve the file statically.
+- `content` specifies a string value to populate the file.
+- [files.pp](files.pp)
+
+
+#### Static Files
+- For static files the source should be as following:
+- `puppet://<hostname>/<mountpoint>/<path>` `hostname` is specified.
+- `puppet:///<mountpoint>/<path>` `hostname` is not specified, the content will be taken from the puppet server currently in use for the session.
+- The `mountpoint` by default corresponds to an entry in `fileserver.conf`
+```ini
+puppet:///archives/application.jar
+
+[archives]
+    path /srv/puppet/archives
+    allow *
+```
+
+`archives` -> `/srv/puppet/archives`
+
+- The `modules` mountpoint is a special internal mountpoint.
+- The server will search in a predetermined location in the `modulepath`.
+- The path ised for the modules mountpoint is `<modulename>/<filename>`
+- The filename is relative from the files directory in:
+    - `<modulename>/files/<filename>` <- `apache/files/httpd.conf`
+    - `puppet:///modules/apache/httpd.conf`
+    - The filename is looked up within the modules sub dir called `files`.
+    - `<path>` is actually made up of the `modulename` and `filename` combined.
+
