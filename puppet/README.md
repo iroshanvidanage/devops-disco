@@ -281,4 +281,4 @@ puppet:///archives/application.jar
     - `puppet:///modules/apache/httpd.conf`
     - The filename is looked up within the modules sub dir called `files`.
     - `<path>` is actually made up of the `modulename` and `filename` combined.
-
+- To stop replacing the content of the file if the content has been changed, use `replace: false`
