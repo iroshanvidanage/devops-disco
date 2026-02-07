@@ -4,6 +4,6 @@ group { 'sysadmins':
 
 user { 'bob':
   ensure => present,
-  uid => '9999',
+  uid    => '9999',
   groups => 'sysadmins',
 }

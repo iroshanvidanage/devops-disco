@@ -1,8 +1,8 @@
 # 
 
 service { 'sshd':
-  ensure => running,
-  enable => true,
+  ensure  => running,
+  enable  => true,
   require => Package['openssh-server'],
 }
 

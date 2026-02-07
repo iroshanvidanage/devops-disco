@@ -25,13 +25,13 @@ package { 'web_server_2':
 # there are some resources which are distributed under different providers;
 # here we have specified the provider to be 'gem'
 package { 'mysql':
-  ensure => installed,
+  ensure   => installed,
   provider => 'gem',
 }
 
 # in the second declaration the default package manager is selected from RAL depending on the os of the system, therefore the provider is not specified and the package will be installed using the default provider for that system, which could be 'rpm' for RedHat based systems or 'deb' for Debian based systems.
 package { 'rpm-mysql':
-  ensure => installed,
+  ensure   => installed,
   provider => 'mysql',
 }
 # in this set the uniqueness is a combination of title, provider and the namevar. which is different for the both.
