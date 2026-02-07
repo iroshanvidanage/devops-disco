@@ -282,3 +282,41 @@ puppet:///archives/application.jar
     - The filename is looked up within the modules sub dir called `files`.
     - `<path>` is actually made up of the `modulename` and `filename` combined.
 - To stop replacing the content of the file if the content has been changed, use `replace: false`
+
+
+## Relationships
+
+### Resource Ordering
+
+- Resources are read in the order they are written.
+- That doesn't always mean that's the order they will be applied in.
+- Manifest ordering is now default, but explicit relationships are clearer especially with resources across multiple classes.
+- The ordering option in `puppet.conf` used to order, defaults to `manifest` in later versions of Puppet, but could be `title-hash` or `random`.
+- `puppet config print ordering` shows the ordering method.
+- `puppet apply relationship.pp --ordering title-hash` applies according to the hash value of the title.
+- `puppet apply relationship.pp --ordering random` applies randomly.
+
+
+### Resource Referencing
+
+- A resource reference is a pointer to a resource declaration.
+- A resource reference always starts with an uppercase letter, in consistance with the resource type followed by the title of the resource.
+- To declare relationships between resources, there're a number of meta parameters available.
+```puppet
+# resource declaration
+package { 'httpd':
+    ensure => installed,
+}
+
+# resource reference
+Package['httpd']
+```
+
+
+#### require/before
+
+- `require` allows to reference a nother resource declaration to be configured before the current.
+- In the event of the required reference fails to install or execute, the current resource will be skipped.
+- Using `before` is exactly the reverse of the `require` parameter.
+- `require` and `before` can be used interchangeably, but it's more readable to use `require`.
+

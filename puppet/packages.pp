@@ -2,7 +2,6 @@
 
 package { 'ntp':
   ensure => installed,
-
   before => Package['httpd'],
 }
 
