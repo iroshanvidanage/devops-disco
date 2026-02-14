@@ -419,3 +419,9 @@ $filename = "${prefix}.${suffix}"
 - Resource references are no different.
 
 
+### Hashes
+
+- Hashes are declared using brackets `{ }`.
+- Key values are separated by a hashrocket (`=>`).
+- Values can be looked up by placing the hash key in square brackets.
+
