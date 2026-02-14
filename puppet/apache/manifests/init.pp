@@ -1,13 +1,13 @@
 # base class for apache
 class apache {
 
-  $packge_name = $facts['os']['family'] ? {
+  $packge_name = $::facts['os']['family'] ? {
     'RedHat' => 'httpd',
     'Debian' => 'apache2',
     default  => 'httpd',
   }
 
-  $service_name = $facts['os']['family'] ? {
+  $service_name = $::facts['os']['family'] ? {
     'RedHat' => 'httpd',
     'Debian' => 'apache2',
     default  => 'httpd',

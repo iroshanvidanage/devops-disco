@@ -450,3 +450,47 @@ $filename = "${prefix}.${suffix}"
 
 - Trusted facts are retrieved from the Agents SSL certificate.
 - They are stored in a top level hash called `$::trusted`.
+
+
+## Conditionals
+
+### Controlling Flow
+
+- Assignment conditionals
+    - Selectors
+- Flow conditionals
+    - Case statements
+    - If/Else
+- [conditionals.pp](./conditionals.pp)
+
+#### Selectors
+
+- Selectors assign data based on an evaluation.
+- They do not control the flow of code.
+
+
+#### Case Statements
+
+- Case statements execute a block of code depending on the evaluation.
+
+
+#### Regular Expressions
+
+- Both case statements and selectors can use regular expressions.
+- A standard regex is declared between two forward slashes (`/`) with no quotes.
+
+
+#### If/Else
+
+- If / else / elsif blocks are used to control the general flow of code.
+- The block is executed if the evaluation is true.
+- If statements support operators to compare two values.
+    - `==` equals to
+    - `!=` not equal to
+    - `<` less than
+    - `<=` less than or equal to
+    - `>` greater than
+    - `>=` greater than or equal to
+    - `=~` match regular expression
+- An if statement can be inverted using the `unless` keyword.
+
