@@ -313,6 +313,11 @@ Package['httpd']
 ```
 
 
+>[!NOTE]
+> When referencing a resource, we are managing the resource declaration in Puppet, not the configured entity on the agent. The resource should be declared in the catalog.
+> The resource created in the system - manually doesn't applies to the reference.
+
+
 #### require/before
 
 - `require` allows to reference a nother resource declaration to be configured before the current.
