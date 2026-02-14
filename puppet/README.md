@@ -408,7 +408,7 @@ $filename = "${prefix}.${suffix}"
 ```
 
 
-#### Arrays
+### Arrays
 
 - Array items are declared inside square brackets.
 - `[ ]` Denotes an array.
@@ -417,3 +417,5 @@ $filename = "${prefix}.${suffix}"
 - [arrays.pp](arrays.pp)
 - Arrays can be written directly into resource declarations.
 - Resource references are no different.
+
+
