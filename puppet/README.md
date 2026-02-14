@@ -425,3 +425,16 @@ $filename = "${prefix}.${suffix}"
 - Key values are separated by a hashrocket (`=>`).
 - Values can be looked up by placing the hash key in square brackets.
 
+
+### Scope of existance for Variables
+
+- Variables exist within a scope.
+- Generally it is the class that's been declared within.
+- Puppet has the concept of a top scope, for any variable declared outside of any particular class.
+- If a variable is not found in the current scope, the next scope is searched, which is the top scope.
+- Scopes are namespaced with `::`.
+    - Top_scope: `$var = 1`
+    - Class_scope: `$var = 2`
+- To explicitly reference the top scope var we need to explicitly fully qualify it, `::var`
+
+
