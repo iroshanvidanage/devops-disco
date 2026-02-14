@@ -406,18 +406,3 @@ $suffix = 'txt'
 
 $filename = "${prefix}.${suffix}"
 ```
-
-
-#### Arrays
-
-- Array items are declared inside square brackets.
-- Can use an array in the resource title, this creates multiple resources.
-```puppet
-
-$users = [ 'bob', 'susan', 'peter' ]
-
-user { $users:
-    ensure => present,
-}
-```
-
