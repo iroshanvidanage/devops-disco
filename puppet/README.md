@@ -587,4 +587,62 @@ $filename = "${prefix}.${suffix}"
     - `$port =~ Integer`
 - Data types can also be used in the evaluation of case and selector statments.
 
- 
+
+## Functions
+
+- Puppet functions are executed in Puppet server, they are executed during catalog compilation.
+- They don't run on agents.
+
+
+### Server side methods
+
+- Functions can be written in Ruby or Puppet DSL.
+- Functions either return data to assign to a variable or perform an action with no retun value (statement function)
+
+
+### Calling Functions
+
+- Prefixed syntax
+    - `function(arg, arg)`
+- Chained syntax notation: this type requires at least one argument to be present and that argument is followed by the function and if more arguments are present they will be added within brackets seperated by commas.
+    - `arg.function(arg, arg)`
+- The `notice` function is a function which causes to update the notice logs in the puppet server and the `notify` resource is applied when the catalog is been compiled and notified to the agent, which causes the notice log on the agent to be updated.
+    - `notice("Hello World")`
+    - `"Hello World".notice`
+- Functions can be found at three level.
+    - Global functions: they are defined at global level which is only one version or instance is available.
+        - `function`
+    - Environment level functions: they are isolated according to the environment and a function in one environment may not be available in another environment.
+        - `environment::function`
+    - Module function: we include functions in modules and we can call that faunction by referencing the module name and `::` followed by function name.
+        - `modulename::function`
+
+
+### Assignment Functions
+
+- Always returns a value and we have to assign that value to something.
+    - `$hash = md5('Hello World')` : takes a string and returns the `md5` hash of that string.
+
+
+### Lambdas (code Blocks)
+
+- Code blocks provide "anonymous functions"
+- Usually a function will yield an object (parameter) within the code block.
+- Following the function call with one or more parameters that the function yields, between pipe symbols, and then a set of curly braces that contains our code block.
+- Prefixed syntax
+    - `function(arg, arg) |param, param| { }`
+- Chained syntax notation
+    - `arg.function(arg) |param, param| { }`
+
+
+### Loops & Iterators
+
+- A common use of code blocks to iterate over hashes or arrays.
+- The `each` function supports two parameters when used with a hash.
+- If the `$vhosts` variable is a hash containig hostnames mapped to ports we can iterate.
+
+
+### Data Validation in Code Blocks
+
+- We can include data validation in code blocks by expressing parameters prefixed with data types.
+
