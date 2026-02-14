@@ -501,3 +501,80 @@ $filename = "${prefix}.${suffix}"
 > If it needs to be case sensitive use a regular expression.
 
 
+## Data Types
+
+- We can express data types in the Puppet DSL as a plain word starting with an uppercase letter.
+- Data types offer a way to assert that variables conform to a specific type.
+- Depending on the data type, we can optionally supply parameters to narrow the validation criteria.
+- For example, the String data type takes parameters of minimum and maximum length.
+    - `String[5]` The number of characters the string could contain
+    - `String[5, 10]` The minimum and maximum characters
+
+
+### Core Data Types
+
+#### Numeric Data Types
+
+- We can use the data types `Integer` and `Float` to represent whole integers or floating point numbers.
+- The data type `Numeric` can assert either of `Float` or `Integer`
+- `Float` and `Integer` support minimum and maximum parameters
+- The `Numeric` type does not support any parameters.
+    - `Integer[5, 10]` between 5-10
+    - `Float[1.9]` float no less than 1.9
+
+
+#### Array Data Type
+
+- The `Array` type supports tree optional parameters, the content type and the minimum and maximum length of the array.
+- A special argument of `Any` is accepted for the first parameter.
+    - `Array[String]`
+    - `Array[Any, 5]`
+    - `Array[String, 5, 10]`
+
+
+#### Hash Data Type
+
+- The `Hash` type supports foru optional parameters, the content type of the keys, content type of the values and the minimum and maximum number of keys in the hash.
+    - `Hash[String, Integer]`
+    - `Hash[String, Integer, 5]`
+    - `Hash[String, Integer, 5, 10]`
+
+
+#### Regexp Data Type
+
+- The `Regexp` type asserts that the value given is a regular expression
+    - `Regexp`
+
+
+#### Undef Data Type
+
+- The `Undef` type asserts that the value given is as an undefined value, or `undef`
+    - `Undef`
+
+
+### Abstract Data Types
+
+- Core data types can be wrapped into more customized abstract types.
+- These enable us to do more extensive or broader validation on values.
+
+
+#### Variant Data Type
+
+- The `Variant` data type asserts that a value can be one of a mixture of other types.
+- It takes a list of data type as parameters.
+    - `Variant[String, Integer]`
+    - `Variant[Boolean, String]`
+
+
+#### Enum Data Type
+
+- Given a list of string parameters, `Enum` can be used to assert that the value is a string and it's value matches one of the parameters.
+    - `Enum['yes', 'no']`
+
+
+#### Optional Data Type
+
+- `Optional` takes a data type as a parameter and asserts that the value matches the type of the parameter, or is `undef`
+- This is similar to a `Variant` data type but with the parameter and `Undef` as the second parameter.
+    - `Optional[String]` == `Variant[String, Undef]`
+
