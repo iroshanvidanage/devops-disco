@@ -494,3 +494,10 @@ $filename = "${prefix}.${suffix}"
     - `=~` match regular expression
 - An if statement can be inverted using the `unless` keyword.
 
+
+> [!NOTE]
+> Case statements, If/Else statements and selectors are all case insensitive.
+> RedHat == redhat == REDHAT
+> If it needs to be case sensitive use a regular expression.
+
+
