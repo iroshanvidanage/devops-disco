@@ -380,3 +380,44 @@ Package['httpd']
         |- init.pp
 ```
 - Node configuration: [`/etc/puppetlabs/code/environments/production/manifests/site.pp`](./apache/site.pp)
+
+
+## Variables
+
+- Variables in Puppet are prefixed with `$`.
+- Assigned with `=`.
+- Must begin with a lowercase letter or underscore.
+- The variable name can include alphanumeric and underscores.
+- `$pkgname = 'httpd'`
+- Once declared, a variable cannot be modified or re-declared. Variables are constants.
+- Variables can be used for resource titles.
+- variables can be used for resource attribute values.
+- [variables](variables.pp)
+
+### Variable Interpolation
+
+- Strings in Puppet should always be quoted.
+- Single quotes for static content.
+- Double quotes for interpolated content.
+- When interpolating a variable into a string, the variable should be in brackets.
+```puppet
+$prefix = 'README'
+$suffix = 'txt'
+
+$filename = "${prefix}.${suffix}"
+```
+
+
+#### Arrays
+
+- Array items are declared inside square brackets.
+- Can use an array in the resource title, this creates multiple resources.
+```puppet
+
+$users = [ 'bob', 'susan', 'peter' ]
+
+user { $users:
+    ensure => present,
+}
+```
+
