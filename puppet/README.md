@@ -578,3 +578,13 @@ $filename = "${prefix}.${suffix}"
 - This is similar to a `Variant` data type but with the parameter and `Undef` as the second parameter.
     - `Optional[String]` == `Variant[String, Undef]`
 
+
+### Validating values
+
+- Can use the `=~` operator to validate a value against a data type.
+- The outcome of the evaluation will be `true` of `false`.
+    - `$hostname =~ String[4]`
+    - `$port =~ Integer`
+- Data types can also be used in the evaluation of case and selector statments.
+
+ 
