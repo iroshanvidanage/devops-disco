@@ -333,3 +333,12 @@ Package['httpd']
 - The exec resource is also refreshable. Since an exec resource needs to be idempotent we can use `refreshonly` parameter.
 
 
+#### Implied Dependencies
+
+- Some resource have implied dependencies, there are times when Puppet knows that certain resources should be configured before other resources.
+- You don't always need to specify dependency metaparameters.
+- As an example `user` resource type.
+- [Examples](implied_dependencies.pp)
+- Here the build-in logic of `user` type resource, it ensures that the required groups are created before the user is created, hence if the `group` type is declared, then it will be managed before the `user` is managed.
+- So we don't need to explicitly declare that dependency.
+
