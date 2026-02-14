@@ -406,3 +406,13 @@ $suffix = 'txt'
 
 $filename = "${prefix}.${suffix}"
 ```
+
+
+#### Arrays
+
+- Array items are declared inside square brackets.
+- Can use an array in the resource title, this creates multiple resources.
+- Some resource types take arrays for their attributes.
+- [arrays.pp](arrays.pp)
+- Arrays can be written directly into resource declarations.
+
