@@ -14,7 +14,7 @@ file { '/etc/puppet/puppet.conf':
   content => 'puppet.conf content',
 }
 
-directory { '/etc/puppet':
+file { '/etc/puppet':
   ensure => directory,
 }
 

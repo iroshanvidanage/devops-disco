@@ -362,3 +362,21 @@ Package['httpd']
     - `~>` left refreshes right
     - `<~` right refreshes left
 
+
+## Exercise - Package / File / Service
+
+- This is a design pattern where the package resource is managed first and then any files required are created then the service resource is managed.
+- In this exercise a module for apache httpd service will be created.
+- Manage the httpd package and service.
+- Manage the default httpd.conf file
+- Ensure the document root exists.
+- Module path: `/etc/puppetlabs/code/environments/production/modules/`
+- Module directory tree: [apache](./apache/manifests/init.pp)
+```sh
+../modules/apache
+    |- files
+        |- httpd.conf
+    |- manifests
+        |- init.pp
+```
+- Node configuration: [`/etc/puppetlabs/code/environments/production/manifests/site.pp`](./apache/site.pp)
