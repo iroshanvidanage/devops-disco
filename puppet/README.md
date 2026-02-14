@@ -320,3 +320,16 @@ Package['httpd']
 - Using `before` is exactly the reverse of the `require` parameter.
 - `require` and `before` can be used interchangeably, but it's more readable to use `require`.
 
+
+### Triggering Events
+
+- Some resources need to take an action based on an event occuring in a different resource.
+- For example when a configuration file changed we want to restart the service.
+- Some resource types are refreshable, meaning they taken an action when they receive a refresh event.
+- As an [example](./relationships.pp/#subscribe-parameter), we need to restart the `httpd` service whenever the Apache configuration file is updated.
+- Two meta parameters available for this purpose; `subscribe` or `notify` to send an event notification.
+- The addedd benefit of using `subscribe` is that whenever a change is detected for the referenced resource, a service resource will restart the service. Also this will make sure that the file resource is managed before the service resource, similar to `require`.
+- The `notify` is the opposite to `subscribe` and similar to `before`, therefore when the ordering is done any resource with `notify` meta parameter is managed before the referenced resource.
+- The exec resource is also refreshable. Since an exec resource needs to be idempotent we can use `refreshonly` parameter.
+
+
