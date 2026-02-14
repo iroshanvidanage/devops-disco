@@ -59,7 +59,3 @@ exec { 'clear_tinpot_cache':
   refreshonly => true,
 }
 
-# chaining arrows
-notify { 'd': } -> notify { 'e': } -> notify { 'f': }
-
-

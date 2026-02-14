@@ -342,3 +342,18 @@ Package['httpd']
 - Here the build-in logic of `user` type resource, it ensures that the required groups are created before the user is created, hence if the `group` type is declared, then it will be managed before the `user` is managed.
 - So we don't need to explicitly declare that dependency.
 
+
+#### Resource Chaining
+
+- Puppet also supports a short hand syntax for expressing relationships by referencing the resources and chaining them together.
+- When referencing resources, they must be declared.
+- `Package['httpd'] -> File['/etc/httpd/httpd.conf']`
+- This implies that `Package` resource should be managed before the `File` resource.
+- If the resource chaining is added we don't have to add `before` or `require` parameters.
+- Resource declarations can also be directly chained.
+- [Example](resource_chaining.pp)
+    - `->` left before right
+    - `<-` right before left
+    - `~>` left refreshes right
+    - `<~` right refreshes left
+
