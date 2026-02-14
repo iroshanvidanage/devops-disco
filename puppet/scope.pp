@@ -17,3 +17,10 @@ class bar {
 }
 
 
+# facts as variables
+
+notify { "osfamily is ${::facts['os']['family']}": }
+
+
+# trusted facts
+notify { "trusted['certname'] is ${::trusted['certname']}": }

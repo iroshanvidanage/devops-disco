@@ -438,3 +438,15 @@ $filename = "${prefix}.${suffix}"
 - To explicitly reference the top scope var we need to explicitly fully qualify it, `::var`
 
 
+### Facts Revisited
+
+- [Facts](#facter)
+- Agent facts are sent to the server and available in a *hash* called `$::facts`.
+- We can use the `facter` command to view facts on the CLI.
+- Facts are also top level variables, but the `$::facts` hash is recommended.
+
+
+#### Trusted Facts
+
+- Trusted facts are retrieved from the Agents SSL certificate.
+- They are stored in a top level hash called `$::trusted`.
