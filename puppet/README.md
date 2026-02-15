@@ -598,6 +598,7 @@ $filename = "${prefix}.${suffix}"
 
 - Functions can be written in Ruby or Puppet DSL.
 - Functions either return data to assign to a variable or perform an action with no retun value (statement function)
+- [functions.pp](./functions.pp)
 
 
 ### Calling Functions
@@ -645,4 +646,5 @@ $filename = "${prefix}.${suffix}"
 ### Data Validation in Code Blocks
 
 - We can include data validation in code blocks by expressing parameters prefixed with data types.
+
 

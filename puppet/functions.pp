@@ -36,3 +36,25 @@ $vhosts.each | $host | {
 $vhosts.each | $hostname, $spot | {
   ...
 }
+
+
+# Data validation in code blocks
+$vhosts.each | String $hostname, Integer $port | {
+  ...
+}
+
+# manage users and home paths
+$users = ['alice', 'bob', 'charlie']
+$users.each | String $username | {
+  user { $username:
+    ensure       => present,
+    managehome   => true,
+  }
+
+  file { "/home/${username}/.bashrc":
+    ensure  => file,
+    owner   => $username,
+    group   => $username,
+    content => 'export PATH=$PATH:/opt/puppetlabs/puppet/bin',
+  }
+}
