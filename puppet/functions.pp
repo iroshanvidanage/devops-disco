@@ -58,3 +58,7 @@ $users.each | String $username | {
     content => 'export PATH=$PATH:/opt/puppetlabs/puppet/bin',
   }
 }
+
+# calling a function from a module
+$greeting = mymodule::sayhello('Alice')
+notify { $greeting: }

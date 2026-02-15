@@ -648,3 +648,25 @@ $filename = "${prefix}.${suffix}"
 - We can include data validation in code blocks by expressing parameters prefixed with data types.
 
 
+### Writing Functions
+
+- Puppet supports three types of functions.
+    - Legacy Ruby API (will be depricated)
+    - Modern Ruby API
+    - Puppet DSL Functions
+- The Legacy API should be avoided;
+    - It will be depricated in future versions.
+    - A function written in the legacy api is global to all environments.
+    - They do not support the new Puppet data types.
+- The modern ruby function API supports namespaced functions that don't bleed into other environments.
+- Ruby functions are normally deployed from within Pupper modules.
+- `<modulepath>/<modulename>/lib/puppet/functions/name.rb`
+
+
+#### Writing Ruby Functions
+
+- A simple ruby function consist of a call to `Puppet::Functions.create_function()` with a ruby method defined within the block.
+- [sayhello.rb](sayhello.rb)
+- The filename should be the function name.
+- Data types can be validated using the dispatch method.
+
