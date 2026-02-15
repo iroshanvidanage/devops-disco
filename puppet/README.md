@@ -670,3 +670,11 @@ $filename = "${prefix}.${suffix}"
 - The filename should be the function name.
 - Data types can be validated using the dispatch method.
 
+
+#### Writing Puppet Functions
+
+- Puppet functions are written completely in the native Puppet DSL.
+- Puppet functions are usually developed from the functions directory of the module root, from a filename matching our function name.
+- [sayhello.pp](sayhello.pp)
+- `<modulepath>/<modulename>/functions/<functionname>.pp`
+
