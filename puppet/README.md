@@ -678,3 +678,29 @@ $filename = "${prefix}.${suffix}"
 - [sayhello.pp](sayhello.pp)
 - `<modulepath>/<modulename>/functions/<functionname>.pp`
 
+
+## Templates
+
+- We embed code into static content to create templates.
+- Templates are normally used for serving dynamic file contents.
+- Puppet supports two template formats,
+    - EPP (Embedded Puppet), Native Puppet DSL templates.
+    - ERB (Embedded Ruby), Legacy Ruby templates.
+
+
+### Calling Puppet Templates
+
+- EPP Templates are called using the in-built `epp` function.
+- Templates are served from the `templates` folder directly under the module root.
+    - `<modulepath>/<modulename>/templates/<name>.epp`
+    - `<modulepath>/<modulename>/templates/<name>.erb`
+- The `epp` function is used to render a template and return the content.
+- The first argument is the location of the template as `<modulename>/<file>`.
+- `<file>` is relative to the templates folder directly under the module root.
+    - `<modulepath>/<module>/templates/<template_name>.epp`
+    - `<modulename> => <modulepath>/<module>`
+    - `<file> => /templates/<template_name>.epp`
+- The second argument is a hash of parameters to pass to the template.
+- [puppet_templates.pp](./puppet_templates.pp)
+
+
