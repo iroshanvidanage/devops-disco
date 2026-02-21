@@ -704,3 +704,22 @@ $filename = "${prefix}.${suffix}"
 - [puppet_templates.pp](./puppet_templates.pp)
 
 
+### Writing Puppet Templates
+
+- Templates are static content with embedded dynamic tags surrounded by `<% .... %>`.
+- There are thress types of tags,
+    - `<% | .... | %>` Parameter tag
+    - `<% .... %>` Functional tag
+    - `<%= .... %>` Expression substitution tag
+
+
+> [!NOTE]
+> When templates are being rendered, we get nelines or additional whitespaces due to the functional code rendering in the file.
+> For this we can use the *Whitespace Controlling.*
+> Examples are, 
+> [Templar](https://silentvoid13.github.io/Templater/commands/whitespace-control.html#:~:text=Templater's%20whitespace%20control%20utility%20allows%20you%20to,tag**%20Trims%20one%20newline%20after%20the%20command)
+> [Templates](https://github.com/puppetlabs/puppet-specifications/blob/master/language/templates.md)
+> [Liquid](https://shopify.github.io/liquid/basics/whitespace/)
+> [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#whitespace-control)
+> [JinjaTags](https://www.redpill-linpro.com/techblog/2023/07/19/jinja_whitespaces.html)
+

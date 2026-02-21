@@ -1,0 +1,8 @@
+
+<% | Array $nameservers, Optional[String] $search | -%>
+<% $nameservers.each |$ns| { -%>
+nameserver <%= $ns %>
+<% } -%>
+<% if $search { -%>
+search <%= $search %>
+<% } -%>
