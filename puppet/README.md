@@ -804,3 +804,12 @@ $name  = "example.com"
 - [resource_grouping.pp](./resource_grouping.pp)
 
 
+### Resource Defaults
+
+- WHen declaring lots of resources of the same type with identical attributes, we can reduce the amount of code by using resource defaults.
+- Puppet supports two types of resource defaults.
+    - Reference syntax.
+    - Resource declaration syntax.
+- Using defaults in resource declarations restricts the scope of the default to the resource declaration block.
+- To declare resource defaults in a block use the special keyword `default` instead of a resource title at the top of the declaration block.
+
