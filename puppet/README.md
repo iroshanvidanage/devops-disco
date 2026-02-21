@@ -812,4 +812,5 @@ $name  = "example.com"
     - Resource declaration syntax.
 - Using defaults in resource declarations restricts the scope of the default to the resource declaration block.
 - To declare resource defaults in a block use the special keyword `default` instead of a resource title at the top of the declaration block.
+- [resource_defaults.pp](./resource_defaults.pp)
 
