@@ -729,3 +729,25 @@ $filename = "${prefix}.${suffix}"
 - Can set file contents using the content attribute of the file resource type.
 - [puppet_templates.pp](./puppet_templates.pp)
 
+
+## Parameterized Classes
+
+- Puppet classes should be designed to be re-usable, sharable components.
+- Can use class parameters to make instantiations of a class customizable.
+- To parmaeterize a class, add a section right after the class name enclosed with brackets `( ... )` and list the configurable parameters as a comma seperated list.
+- Then add the class code within the curly brackets `{ ... }`.
+
+
+### Declaring a class
+
+- Can use the `include` function or class declaration syntax to declare a class.
+    - `include apache`
+    - `class { 'apache': }`
+- For parametrized classes we have to use declaration syntaxx to declare the class.
+
+
+#### Resource declaration syntax
+
+- Using the resource declaration syntax we can pass parameters to a class the same way as resource attributes.
+- Parameters are mandatory unless they have a default.
+- Can use data types to validate the input into the class.
