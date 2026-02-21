@@ -814,3 +814,9 @@ $name  = "example.com"
 - To declare resource defaults in a block use the special keyword `default` instead of a resource title at the top of the declaration block.
 - [resource_defaults.pp](./resource_defaults.pp)
 
+
+### Dynamic Attributes
+
+- Puppet supports the ability to define resource attributes dynamically from a hash.
+- To pass dynamic resources to a declaration we can use the special `*` attribute.
+- [dynamic_attributes.pp](./dynamic_attributes.pp)
