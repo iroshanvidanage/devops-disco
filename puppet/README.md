@@ -723,3 +723,9 @@ $filename = "${prefix}.${suffix}"
 > [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#whitespace-control)
 > [JinjaTags](https://www.redpill-linpro.com/techblog/2023/07/19/jinja_whitespaces.html)
 
+
+### Dynamic File Content with Templates
+
+- Can set file contents using the content attribute of the file resource type.
+- [puppet_templates.pp](./puppet_templates.pp)
+
