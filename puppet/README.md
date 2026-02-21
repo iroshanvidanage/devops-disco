@@ -752,3 +752,44 @@ $filename = "${prefix}.${suffix}"
 - Using the resource declaration syntax we can pass parameters to a class the same way as resource attributes.
 - Parameters are mandatory unless they have a default.
 - Can use data types to validate the input into the class.
+
+
+## Defined Resources
+
+- Similar to classes, but provide a configuration model that can be instantiated multiple times.
+- When need to group together several resources into a repeatable template.
+- Defined resources are named as `<module>::<name>`.
+- They should be placed in a manifest file that corresponds with the name.
+- A defined resource of `apache::vhost` is defined in;
+    - `<modulepath>/apache/manifests/vhost.pp`
+- Defined resources are written using the `define` keyword.
+- The syntax is almost identical to a parameterized class.
+
+
+### Declaring a Defined Resource
+
+- Defined resource are declared with the same syntax as regular resources.
+- The resource attributes are passed to the parameters of the defined resource type.
+- In Puppet, inside a defined type, two automatic variables exist:
+    - `$title`
+        - The exact title used when the resource is declared.
+        - Always available.
+        - Never altered.
+    - `$name`
+        - Historically used as a convenience variable.
+        - In modern Puppet (4+), `$name` is effectively an alias of `$title`.
+        - But `$title` is the correct and recommended variable.
+- The resource title is passed to the `$name` variable.
+- If you declare `apache::vhost { 'example.com': }`;
+    - Then;
+```puppet
+$title = "example.com"
+$name  = "example.com"
+```
+- Practically in Puppet 4+: `$name == $title`
+- But best practice is: `String $docroot = "/var/www/${title}",`
+- Because:
+    - `$title` is the canonical automatic variable.
+    - `$name` exists mainly for backward compatibility.
+    - `$title` is clearer and more future-proof.
+
