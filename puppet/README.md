@@ -736,6 +736,7 @@ $filename = "${prefix}.${suffix}"
 - Can use class parameters to make instantiations of a class customizable.
 - To parmaeterize a class, add a section right after the class name enclosed with brackets `( ... )` and list the configurable parameters as a comma seperated list.
 - Then add the class code within the curly brackets `{ ... }`.
+- [parameterized_classes.pp](./parameterized_classes.pp)
 
 
 ### Declaring a class
