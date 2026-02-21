@@ -801,5 +801,6 @@ $name  = "example.com"
 - Multiple resource of the same type can be long to write.
 - Can declare multiple resources within the same resource declaration block.
 - In here instead of comma `,` we use the semicolon `;` to seperate each resource.
-- [resource_grouping.pp]
+- [resource_grouping.pp](./resource_grouping.pp)
+
 
