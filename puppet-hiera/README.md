@@ -154,3 +154,5 @@ hierarchy:
     - name: "Global configuration"
       glob: "common/*"
 ```
+
+- Example [hiera.yaml](./hiera.yaml) v5.

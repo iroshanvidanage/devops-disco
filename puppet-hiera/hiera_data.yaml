@@ -1,0 +1,13 @@
+---
+# location of hiera data files
+# /etc/puppet/hiera.yaml
+# version 3
+:backends:
+  - yaml
+:yaml:
+  :datadir: /etc/puppet/hieradata
+# hierarchy of data sources
+:hierarchy:
+  - "nodes/%{::fqdn}"
+  - "roles/%{::role}"
+  - "common"
