@@ -1,0 +1,8 @@
+---
+greeting: "Hello, World!"
+
+motd::content: |
+  Welcome to the server!
+
+  This server is managed by knikx industries. Please contact support if you have any issues.
+

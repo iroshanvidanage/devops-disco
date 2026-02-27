@@ -156,3 +156,84 @@ hierarchy:
 ```
 
 - Example [hiera.yaml](./hiera.yaml) v5.
+
+
+## Hiera Data
+
+### Data Lookup Methods
+
+- Command line with `puppet lookup`.
+- Puppet `lookup` function.
+- Automatic parameter lookup (data binding).
+
+#### Keys
+
+- Keys are namespaced to a Puppet class.
+- Similar to Puppet, using a `::` delimiter.
+```puppet
+motd::message: Welcome to the Acme Corp network
+```
+
+
+### Populating Data
+
+#### Using the command line
+
+- Data can be queried using `puppet lookup`.
+- First argument is the key to lookup.
+```sh
+puppet lookup motd::message
+```
+- Example [common.yaml](./data/common.yaml) lookup.
+```sh
+puppet lookup greeting
+
+# can render as with different formats
+puppet lookup greeting --render-as json
+
+# verbose how hiera lookup for data
+puppet lookup greeting --explain
+```
+
+#### Lookup function in Puppet
+
+- Puppet has a function called `lookup`.
+- Perform a Hiera lookup within code.
+```puppet
+lookup('motd::message', String)
+```
+- Example [data_lookup.pp](./data_lookup.pp)
+
+#### Automatic Data Bindings
+
+- Puppet automatically looks up class parameters.
+```puppet
+class apache (
+    Integer $port = 80,
+) {
+    ...
+}
+```
+- Puppet will attempt to lookup `apache::port`.
+- Data bindings can be overridden by a declaration. for the first declaration therewon't be a lookup.
+- For the second and third declarations there'll be data lookups.
+```puppet
+class { 'apache':
+    port => 8080,
+}
+
+class { 'apache': }
+
+include apache
+```
+
+#### Order of Precedence
+
+- Parameter specified in class declaration.
+- Automatic Hiera lookup.
+- Default specified within class.
+
+#### Automatic Data Binding with public classes
+
+- [data_lookup.pp](./data_lookup.pp)
+
