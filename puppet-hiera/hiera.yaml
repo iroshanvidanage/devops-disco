@@ -7,9 +7,11 @@ defaults:
   data_hash: yaml_data
 
 hierarchy:
+  - name: "Per-node data"
+    path: "nodes/%{ facts.networking.fqdn }.yaml"
+  - name: "Per-role data"
+    path: "roles/%{ facts.role }.yaml"
+  - name: "OS-specific data"
+    path: "os/%{ facts.os.family }.yaml"
   - name: "Global data"
     path: "common.yaml"
-  - name: "Per-node data"
-    path: "nodes/%{fact.fqdn}.yaml"
-  - name: "Per-role data"
-    path: "roles/%{fact.role}.yaml"

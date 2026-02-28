@@ -237,3 +237,21 @@ include apache
 
 - [data_lookup.pp](./data_lookup.pp)
 
+
+## Dynamic Hierarchies
+
+### Using Facts
+
+- Hiera's configuration file can interpolate facts.
+- Facts are used to determine the hierarchy.
+- Interpolation syntax is `%{ var }`.
+- Several top scope variables can be accessed.
+- Agent facts are available as facts.
+- Facts can be used to define hierarchy paths.
+- Hash sub-keys are referenced using a dot notation.
+    - `%{facts.os.name}`
+- By using facts we can make hierarchy paths dynamic.
+- Examples: [hiera.yaml](hiera.yaml): [RedHat.yaml](./data/os/RedHat.yaml), [CentOS.yaml](./data/os/CentOS.yaml)
+- The values are overridden depending on the hierarchy in the hiera.yaml.
+- The priority is given to the top most configuration in the hierarchy.
+
