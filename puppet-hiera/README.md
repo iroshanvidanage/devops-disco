@@ -299,4 +299,43 @@ include apache
 
 #### `lookup` function
 
-- 
+- Hiera equivilent of a sub-query.
+- perform a Hiera llookup and return the result
+```yaml
+monitoring::http_port: "%{ lookup('apache::port') }"
+```
+- Referenced data can be anywhere in the hierarchy, doing a full hiera lookup.
+- Lookups can be used in interpolation, and can build different data sets.
+- Has a synonym `hiera`, this is built for lecagcy compatibility.
+```yaml
+monitoring::http_port: "%{ hiera('apache::port') }"
+```
+
+#### `literal` function
+
+- A simple function to escape the `%` character.
+- Hiera will try and interpolate strings with `%`.
+- As an example if we do the apache configurations, 
+```yaml
+web::rewrites:
+    - "%{SERVER_PORT} '!^80$'"
+
+- " '!^80$'"
+```
+- This is going to give a warning.
+```bash
+Warning: Undefined variable 'SERVER_PORT';
+```
+- To escape this can use `literal` function.
+```yaml
+web::rewrites:
+    - "%{ literal('%') }{SERVER_PORT} '!^80$'"
+
+- "%{SERVER_PORT} '!^80$'"
+```
+
+> [!CAUTION]
+> - Overusing functions leads to complicated data paths.
+> - Evaluate when the logic would be better in code or better in hiera data.
+> - Nested lookups are possible but unwise.
+> - Useful for edge case scenarios.

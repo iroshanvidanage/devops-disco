@@ -29,7 +29,7 @@ users:
 sysadmins: "%{ alias('users') }"
 
 ##############################################################
-domain: "example.com"
+# domain: "example.com"
 
 # Using alias with a map
 website: "alias(%{'domain'})" ==> 
@@ -43,3 +43,7 @@ site:
   "example.com"
 # This creates a map with a key named  and no value, which is very different from just substituting the string.
 ##############################################################
+
+# lookup function
+sitename: "knikx.com"
+siteurl: "https://%{ facts.datacenter }.%{ lookup('sitename') }"
