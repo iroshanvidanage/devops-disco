@@ -255,3 +255,48 @@ include apache
 - The values are overridden depending on the hierarchy in the hiera.yaml.
 - The priority is given to the top most configuration in the hierarchy.
 
+
+## Dynamic Data 
+
+### Variable Interpolation
+
+- Variables can be used in Hiera data too.
+- Hiera can interpolate various variables.
+    - Facts
+    - Trusted facts
+    - Server facts
+    - Top level variables
+- The `%{  }` syntax can be used within data.
+- Example [common.yaml](./data/common.yaml)
+
+### Function Interpolation
+
+- Hiera functions can perform further tasks on lookups.
+- Functions are only used in data.
+- Current supported functions include;
+    - `alias`
+    - `lookup`
+    - `literal`
+- To call a function a synctax similar to variables is used.
+- Arguments placed in parenthesis.
+
+#### `alias` function
+
+- Re-use an existing hash, array or boolean.
+- Example [common.yaml](./data/common.yaml)
+- Cannot interpolate with strings just only the entier key can be used.
+
+>[!NOTE]
+> This creates a map with a key named example.com and no value, which is very different from just substituting the string.
+> Key Difference
+> - alias(%{'domain'}) → substitutes the scalar value directly.
+> - %{ alias('domain') } → treats the scalar as a map key, which can lead to unexpected or invalid structures if you intended a simple value.
+> 
+> ✅ So:
+> - Use alias(%{'... ‘}) when the alias points to a scalar or list you want directly substituted.
+> - Use %{ alias('...') } when you want to interpolate into a map structure (usually with lists, not scalars).
+
+
+#### `lookup` function
+
+- 

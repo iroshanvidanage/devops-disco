@@ -2,7 +2,44 @@
 greeting: "Hello, World!"
 
 motd::content: |
-  Welcome to the server!
+  Welcome to the server %{ facts.networking.fqdn }!
 
   This server is managed by knikx industries. Please contact support if you have any issues.
+  This server is running in %{ facts.datacenter } datacenter.
 
+# variables interpolation
+webserver::listen: "%{ facts.networking.ip }:8080"
+
+# function interpolation
+nameservers:
+  - "ns1.example.com"
+  - "ns2.example.com"
+
+# alias function interpolation
+resolv::dns: "alias(%{'nameservers'})"
+
+users:
+  - "alice"
+  - "bob"
+  - "charlie"
+  - "dave"
+  - "eve"
+  - "frank"
+
+sysadmins: "%{ alias('users') }"
+
+##############################################################
+domain: "example.com"
+
+# Using alias with a map
+website: "alias(%{'domain'})" ==> 
+# - Here, alias() is being called directly with a map reference (%{}).
+website: "example.com"
+
+# Using interpolation
+site: "%{ alias('domain') }"  ==> 
+# Here, interpolation is used inside a map literal. - The result of alias('domain') is placed into the map.
+site:
+  "example.com"
+# This creates a map with a key named  and no value, which is very different from just substituting the string.
+##############################################################
