@@ -1,0 +1,13 @@
+---
+# the intra port is different here, so it will override the common.yaml value
+apache::sites:
+  envar:
+    port: 80
+    documentroot: "/var/www/envvar"
+    serveradmin: "envar@knikx.com"
+  london:
+    port: 80
+    documentroot: "/var/www/london"
+    serveradmin: "london@knikx.com"
+  intra:
+    port: 8080

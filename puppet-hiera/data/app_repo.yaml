@@ -1,0 +1,6 @@
+---
+
+yum::repos:
+  application:
+    baseurl: http://yum.example.com/application
+    gpgkey: http://yum.example.com/RPM-GPG-KEY-application

@@ -339,3 +339,78 @@ web::rewrites:
 > - Evaluate when the logic would be better in code or better in hiera data.
 > - Nested lookups are possible but unwise.
 > - Useful for edge case scenarios.
+
+
+## Data Lookup Behaviour
+
+### Merging and Cascading
+
+- By default, Hiera returns the first result.
+- The remaining hierarchy is skipped.
+- Sometimes we do not want just the first result.
+- A lookup can cascade through all levels of the hierarchy.
+- All results are returned as an array or hash.
+```yaml
+# config file 1
+system::packages: ['php5', 'apache', 'java']
+
+# config file 2
+system::packages: ['libgcc++', 'autoconf']
+
+# needs to return all -- merge unique
+['php5', 'apache' , 'java', 'libgcc++', 'autoconf']
+```
+
+### Merge Types
+
+- Hiera supports several lookup behaviours.
+- The default is `first`: Return the first found result and skip.
+- Other merge behaviours are;
+    - `unique`
+    - `hash`
+    - `deep`
+- Using the cli: `puppet lookup system::packages --merge unique`
+- Using lookup function in Puppet: `$packages = lookup('system::packages', Array, 'unique')`
+
+#### `unique`
+
+- Walks through each hierarchy level and collects all instances of the key, then retruns an array of all results.
+- Each element is unique, if we have two of the same element only one is returned.
+- Can use for strings and arrays, but cannot use them for hashes.
+
+#### `hash`
+
+- Walks through each hierarchy level, expects all matching values to be hashes, merges all answers into one hash.
+- Two data sets with same variable name in two places in hierarchy, merges into one hash.
+- Here the top level keys needs to be unique through the hierarchy.
+- Examples [app_repo.yaml](./data/app_repo.yaml), [dba_repo.yaml](./data/dba_repo.yaml)
+```yaml
+{
+    "application" => {
+        "baseurl" => "http://yum.example.com/application",
+        "gpgkey" => "http://yum.example.com/RPM-GPG-KEY-application"
+        },
+    "dba" => {
+        "baseurl" => "http://yum.example.com/dba",
+        "gpgkey" => "http://yum.example.com/RPM-GPG-KEY-dba"
+        }
+}
+```
+
+#### `deep`
+
+- Aka `deep hash`, best used for overriding certain values from hashes.
+- The port for intra in [common.yaml](./data/common.yaml) has been overridden in [sites.yaml](./data/sites.yaml)
+- But `hash` merging only keeps the port value, here we need to keep the rest of the hash values intact otherthan for the port.
+- For this we can use `deep`.
+- `puppet lookup apache::sites --merge hash`
+
+#### Lookup Options
+
+- We can change the lookup behaviour of a key without altering any code; by using `lookup_options` in the hierarchy.
+- When hiera does lookup it first lookup for `lookup_options` in the background.
+- We can specify `loopup_options` in the [common.yaml](./data/common.yaml) and execute following;
+    - `puppet lookup apache::sites`
+
+> [!NOTE]
+> `puppet lookup apache::sites --explain` allows you to see how the lookup is working how puppet is traversing through all hiera.

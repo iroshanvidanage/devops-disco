@@ -1,4 +1,14 @@
 ---
+
+lookup_options:
+  # This is a global lookup option that applies to all lookups.
+  # It specifies that if a key is not found, it should return 'undefined' instead of throwing an error.
+  # This can be useful for optional keys or when you want to handle missing keys gracefully.
+  '*':
+    default: 'undefined'
+  apache::sites:
+    merge: deep
+
 greeting: "Hello, World!"
 
 motd::content: |
@@ -47,3 +57,18 @@ site:
 # lookup function
 sitename: "knikx.com"
 siteurl: "https://%{ facts.datacenter }.%{ lookup('sitename') }"
+
+
+apache::sites:
+  knikx:
+    port: 443
+    documentroot: "/var/www/knikx"
+    serveradmin: "admin@knikx.com"
+  example:
+    port: 80
+    documentroot: "/var/www/example"
+    serveradmin: "example@knikx.com"
+  intra:
+    port: 80
+    documentroot: "/var/www/intra"
+    serveradmin: "intra@knikx.com"

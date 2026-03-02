@@ -1,0 +1,7 @@
+---
+
+yum::repos:
+  dba:
+    baseurl: http://yum.example.com/dba
+    gpgkey: http://yum.example.com/RPM-GPG-KEY-dba
+    
