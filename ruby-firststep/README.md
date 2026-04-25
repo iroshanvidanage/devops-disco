@@ -41,3 +41,17 @@
 - *Reassignment*: You can change the value and even the data type of a variable at any time.
     - `x = 10; x = "now a string"`
 
+
+## Write Data to std output
+
+| Method | Newline at End? | Array Behavior | Best Use Case |
+| ---- | ---- | ---- | ---- |
+| `puts` | Yes | Prints each element on a new line | Standard user-facing output. |
+| `print` | No | Prints the raw array (e.g., [1, 2, 3]) | Sequential output on the same line. |
+| `p` | Yes	| Prints raw structure (with quotes/brackets) | Debugging; shows the actual object. |
+
+
+## User Input
+
+- Use `gets` method to get user input.
+- [user_input](./user_input.rb)
