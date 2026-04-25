@@ -1,5 +1,7 @@
 # Ruby Programming for Everyone
 
+- Ruby is an Object oriented programming language.
+
 >[!TIP]
 > Use `system "clear"` in the top of the script file to clear the screen everytime a script is executed.
 > It will clear the teminal.
@@ -55,3 +57,12 @@
 
 - Use `gets` method to get user input.
 - [user_input](./user_input.rb)
+
+
+## Arithmatic Operators
+
+- Integer operations always return integers.
+- If one of them is a float the return will be a float.
+- Use `.to_i` to convert to an Integer.
+- Use `.to_f` to convert to a Float.
+- Use `.to_s` to convert to a String.
