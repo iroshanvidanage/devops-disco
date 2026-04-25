@@ -423,3 +423,27 @@ system::packages: ['libgcc++', 'autoconf']
 - A popular pattern for defining default values; specially when defaults need to be dynamic.
 - [params_pattern.pp](./params_pattern.pp)
 
+
+### Configuration Levels
+
+- A Hiera configuration is searched for on 3 levels.
+    - Global level
+    - Environment level
+    - Module level
+- Merge lookups doesn't transcend configuration levels, it transcend the heirarchy within a configuration level.
+- **Global**:-
+    - First to be searched.
+    - Used to globally override values.
+    - `/etc/puppetlabs/puppet/hiera.yaml` - this is the lookup location.
+- **Environment**:-
+    - The standard place to configure Hiera.
+    - Each env can implement it's own config.
+    - Allows for changes to be tested and release managed.
+    - `/etc/puppetlabs/code/environments/production/hiera.yaml` - this is the lookup location.
+- **Module**:-
+    - Tha last location to be searched.
+    - Only used for keys matching it's own namespace.
+    - Used to specify module default values.
+    - Can contain `lookup_options` for local keys.
+    - `<module path>/apache/hiera.yaml` - this is the lookup location.
+
