@@ -66,3 +66,48 @@
 - Use `.to_i` to convert to an Integer.
 - Use `.to_f` to convert to a Float.
 - Use `.to_s` to convert to a String.
+
+
+## Comparison Operators
+
+- `==` (Equal To): Returns true if operands are equal in value. It does not perform type coercion (e.g., 4 == "4" is false).
+- `!=` (Not Equal To): Returns true if operands are not equal in value.
+- `>` (Greater Than): Returns true if the left operand is greater than the right.
+- `<` (Less Than): Returns true if the left operand is less than the right.
+- `>=` (Greater Than or Equal To): Returns true if the left operand is greater than or equal to the right.
+- `<=` (Less Than or Equal To): Returns true if the left operand is less than or equal to the right. 
+
+
+### Special Comparison Operators
+
+- `<=>` (Spaceship Operator): Used for sorting. Returns -1 (*less than*), 0 (*equal*), or 1 (*greater than*). It returns *nil* if the objects are not comparable.
+- `===` (Case Equality): Used commonly in case statements to determine if a value matches a pattern.
+- `.eql?` (Type and Value): Returns true only if both operands have the same type and equal values (e.g., 1.eql? 1.0 is false).
+- `.equal?` (Object Identity): Returns true if both operands are the exact same object in memory.
+
+
+## Assignment Operators
+
+- `+=` (*Add and Assign*): `a += b` is shorthand for `a = a + b`
+- `-=` (*Subtract and Assign*): `a -= b` is shorthand for `a = a - b`
+- `*=` (*Multiply and Assign*): `a *= b` is shorthand for `a = a * b`
+- `/=` (*Divide and Assign*): `a /= b` is shorthand for `a = a / b`
+- `%=` (*Modulus and Assign*): `a %= b` is shorthand for `a = a % b`
+- `**=` (*Exponent and Assign*): `a **= b` is shorthand for `a = a ** b`
+
+
+### Advance Assignment
+
+- **Parallel Assignment**: Assigns multiple values to multiple variables in one line.
+```bash
+a, b = 10, 20
+# a = 10, b = 20
+```
+- **Splat Operator (`*`)**: Used in parallel assignment to collect multiple values into an array.
+```bash
+a, *b = 1, 2, 3 # a = 1, b = [2, 3]
+```
+- **Conditional Assignment** (`||=`): Assigns a value only if the variable is currently `nil` or `false`.
+```bash
+name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
+```
