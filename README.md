@@ -4,5 +4,6 @@
 
 1. [puppet](./puppet/README.md)
 2. [puppet-hiera](./puppet-hiera/README.md)
+3. [ruby-firststep](./ruby-firststep/README.md)
 
 
