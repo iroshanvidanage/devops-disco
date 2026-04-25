@@ -111,3 +111,23 @@ a, *b = 1, 2, 3 # a = 1, b = [2, 3]
 ```bash
 name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 ```
+
+
+## Conditional Statements
+
+### Primary Conditional Statements
+
+- **If/Elsif/Else:** Evaluates conditions in order, running the block for the first true condition.
+- **Unless**: Runs code only if the condition is false.
+- **Ternary Operator**: A concise if-else for assignments or simple choices (condition ? true_case : false_case).
+- **Case Expression**: Similar to switch statements in other languages, using when to match patterns.
+
+
+### Modifier Conditionals
+
+- **if/unless modifier**
+- [conditions](conditions.rb)
+
+>[!NOTE]
+> *Truthiness*: In Ruby, only `false` and `nil` are `falsy`. `0`, `""` (`empty string`), and `[]` (`empty array`) are all `truthy`.
+> *Return Values*: `if` expressions return the value of the last statement executed
