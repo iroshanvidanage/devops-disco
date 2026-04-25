@@ -414,3 +414,12 @@ system::packages: ['libgcc++', 'autoconf']
 
 > [!NOTE]
 > `puppet lookup apache::sites --explain` allows you to see how the lookup is working how puppet is traversing through all hiera.
+
+
+## Data in Modules
+
+### Replacing parameter patterns
+
+- A popular pattern for defining default values; specially when defaults need to be dynamic.
+- [params_pattern.pp](./params_pattern.pp)
+
