@@ -447,3 +447,134 @@ system::packages: ['libgcc++', 'autoconf']
     - Can contain `lookup_options` for local keys.
     - `<module path>/apache/hiera.yaml` - this is the lookup location.
 
+
+
+## Sensitive Data - Handling Secrets in Hiera
+
+- Hiera data is usually stored in VCS repos (Git).
+- Any person who has access to the puppet code needs access to Hiera data as well.
+- Some data shouldn't be visible or accessible for every one who has access to the data.
+    - Passwords
+    - Credentials
+    - Access tokens
+    - Certificates
+- **EYAML** a plugin bundled with puppet 6 and above to encrypt values in hiera.
+- EYAML is a community driven project not supported officially.
+- Allows in-line encryption of sensitive values.
+    - `mysql::password: supers3crEt` - plain text version.
+    - `mysql::password: ENC[PKCS7,MIIBeQYJKoZIhvcNFg3jAmdlCLbQ]` - encrypted inline.
+
+
+### EYAML
+
+- Can encrypt plain text strings and entire files.
+- By default it uses *PKCS7* encryption.
+- Supports pluggable encryptors:
+    - GPG
+    - KMS (AWS)
+    - GKMS (Google Cloud)
+    - Vault secret engine - use the vault to store the secret and as a service it retrieves the secret at deployment.
+- Only the person with the key can decrypt the encrypted Hiera data.
+
+### EYAML Installation
+
+- Ruby is used by puppet for plugins, which is the bundles ruby gem for plugins.
+- Puppet CLI and Puppet Server which is running jRuby.
+- `/opt/puppetlabs/puppet/bin/gem list hiera-eyaml`
+- `puppetserver gem list hiera-eyaml`
+- For older versions of Puppet
+```bash
+/opt/puppetlabs/puppet/bin/gem install hiera-eyaml
+puppetserver gem install hiera-eyaml
+systemctl restart puppetserver
+```
+- To update hiera-eyaml to the latest version
+```bash
+/opt/puppetlabs/puppet/bin/gem update hiera-eyaml
+puppetserver gem update hiera-eyaml
+systemctl restart puppetserver
+```
+- Once installed `eyaml` commands will be available.
+    - `eyaml version`
+- Puppet Ruby commands are in `/opt/puppetlabs`
+    - `export PATH=$PATH:/opt/puppetlabs/puppet/bin`
+- Eyaml subcommands:
+    - createkeys
+    - encrypt
+    - recrypt
+    - decrypt
+    - edit
+
+### Creating Keys
+
+- EYAML needs a set of keys to encrypt and decrypt, private & public keys.
+- Stored in a location readable by puppet; `/etc/puppetlabs/puppet/eyaml/`
+- `eyaml createkeys`; default location in current directory `./keys/`
+- Make sure the ownership is puppet.
+
+### Configuration
+
+- EYAML config file locations:
+    - `~/.eyaml/config.yaml`
+    - `/etc/eyaml/config.yaml`
+    - If not custom location can be provided by `EYAML_VAULT` env variable.
+- If using `pkcs7` keys need to specify the location in config file.
+```yaml
+pkcs7_public_key: /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+```
+- If we are using a 3rd party encryption plugin,
+    - Need to override the default from `encrypt_method`
+    - Each encryption plugin may take it's own options.
+    - `encrypt_method: 'gpg'`
+
+### Encrypting Data
+
+- `eyaml encrypt` command is used to encrypt;
+    - Plain strings (`-s`)
+    - Entire files (`-f`)
+```bash
+eyaml encrypt -s secretPassword
+
+echo secretSauce > secret.txt
+eyaml encrypt -f secret.txt
+```
+
+- Returns two output formats, `--output [ string | block ]`
+- Single line; `string: ENC[PKCS7,Nhofhdoahsii...]`
+- Multi-line (YAML encoded)
+```yaml
+block: >
+    ENC[PKCS7,Nhofhdoahsiihaduwhihfaijpeu9qh740r3ytr9yn238cr7u23496rc946c569696596c062569g2cn5f12707nx03n40c7tyroaigfoto640vuijmu-xjmpmSWUYFIFOU^R*%()Y)Tdew6kijfkljfede6LordkdKHDKY]
+```
+- Encrypted strings are in Base64 for handling as plain text. `ENC[<ENCRYPTION_PROVIDER>,<BASE_64_ENCODED_STRING>]`
+- Default is `PKCS7` if no provider is given.
+- `eyaml encrypt -f test.plaintext --output string > text.encrypted`
+
+### Decrypting Data
+
+- `eyaml decrypt` command is used to decrypt;
+    - A strings (`-s`)
+    - A files (`-f`)
+```bash
+eyaml decrypt -s "ENC[PKCS7,Nhofhdoahsii...]"
+
+eyaml decrypt -f test.encrypted
+```
+
+### Editing Files to Add Data to Hiera
+
+- `eyaml edit` used to edit files in-line.
+- Editor can be defined in `$EDITOR` var.
+- Encrypted strings will be presented in plain text.
+- `DEC(1)::PKCS7[secret]!`
+- When adding new block donot add a number.
+- `mysql::password: DEC::PKCS7[token_for_data]!`
+
+### Configure Hiera to use Eyaml
+
+- `eyaml_lookup_key` is used to lookup encrypted eyaml values.
+- It's a single key lookup function.
+- Can be used at any level of the hierarchy.
+- [eyaml_hiera.yaml](./eyaml_hiera.yaml)
+- [eyaml_defaults_hiera.yaml](./eyaml_defaults_hiera.yaml)

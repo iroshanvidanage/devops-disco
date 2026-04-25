@@ -1,0 +1,17 @@
+---
+
+defaults:
+  datadir: data
+  data_hash: yaml_data
+
+hierarchy:
+  - name: "Secret data"
+    lookup_key: eyaml_lookup_key
+    options:
+      pkcs7_private_key: /etc/puppet/keys/private_key.pkcs7.pem
+      pkcs7_public_key: /etc/puppet/keys/public_key.pkcs7.pem
+    paths:
+      - "secret/%{facts.datacenter}.yaml"
+      - "secret.yaml"
+  - name: "Common data"
+    path: "common.yaml"
