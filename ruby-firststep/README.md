@@ -135,4 +135,11 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 
 ## Arrays
 
-- 
+- An array can include different types of data simultaneously.
+- Index of an array starts at 0.
+- Negative indexing supports.
+- Index outofscopes returns `nil`, no error.
+- Can do arithmatic operations if the data is numerical.
+- Arrays can include variables.
+- Arrays can include other arrays(*multi-dimensional arrays*).
+
