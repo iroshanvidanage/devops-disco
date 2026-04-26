@@ -185,3 +185,6 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 - [loops](loops.rb)
 
 
+## Exercise: FizzBuzz
+
+- [fizzbuzz](fizzbuzz.rb)
