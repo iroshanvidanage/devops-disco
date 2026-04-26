@@ -199,4 +199,21 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 >[!NOTE]
 > A method must be defined before it is executed at runtime
 
-- 
+
+## Classes
+
+- Class names starts with a Capital letter.
+- `initialize` method.
+- Setters
+- Getters
+- `to_s` method can return a string report. Usually includes the details about the class.
+
+
+### Class Attr Accessor
+
+- We can use `attr_reader` to create `getter` methods.
+- We can use `attr_writer` to create `setter` methods.
+- We can use `attr_accessor` to create `getter` and `setter` methods.
+- These should be defined in the top of the class.
+
+- [classes](classes.rb)
