@@ -131,3 +131,8 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 >[!NOTE]
 > *Truthiness*: In Ruby, only `false` and `nil` are `falsy`. `0`, `""` (`empty string`), and `[]` (`empty array`) are all `truthy`.
 > *Return Values*: `if` expressions return the value of the last statement executed
+
+
+## Arrays
+
+- 
