@@ -188,3 +188,15 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 ## Exercise: FizzBuzz
 
 - [fizzbuzz](fizzbuzz.rb)
+
+
+## Methods - Functions
+
+- In plain Ruby, generally it's better to define any method before calling it.
+- But when Ruby script runs via handlers/plugins the the full ruby file is loaded first, then it's executed, therefore, for such cases it's okay to define your methods at bottom.
+- So behavior depends on when the method is invoked, not just where it's written.
+
+>[!NOTE]
+> A method must be defined before it is executed at runtime
+
+- 
