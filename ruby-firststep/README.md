@@ -144,6 +144,13 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 - Arrays can include other arrays(*multi-dimensional arrays*).
 
 
+## Hashes
+
+- Similar to a dictionary.
+- Has a key and a value, and seperates by a *hash rocket* `=>`.
+- [hashes](hashes.rb)
+
+
 ## Loops - Iterators
 
 >[!TIP]
@@ -176,4 +183,5 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 - `.step`: Iterates over ranges with a specific step.
 
 - [loops](loops.rb)
+
 
