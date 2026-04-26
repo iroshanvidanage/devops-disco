@@ -143,3 +143,37 @@ name ||= "Guest" # Sets name to "Guest" if it was previously undefined or nil
 - Arrays can include variables.
 - Arrays can include other arrays(*multi-dimensional arrays*).
 
+
+## Loops - Iterators
+
+>[!TIP]
+> To create a range, use `(1..5)` or just `1..10`.
+> Can use a variables to decide the upper and lower limits of the range.
+
+- [rube-iterators](https://womanonrails.com/ruby-iterators)
+
+
+### Looping Constructs
+
+- `while`: Repeats while a condition is true.
+- `until`: Repeats until a condition is true (opposite of `while`).
+- `for`: Iterates over a range or collection.
+- `loop`: Creates an infinite loop; typically used with break (`while true`).
+
+
+### Iterators
+
+- `.each`: For iterating over arrays and hashes.
+- `.map`/`.collect`: Returns a new array with results from the block.
+- `.map!`/`.collect!`: Returns the same array with modified results.
+- `.select`/`.find_all`: Returns elements that satisfy a condition.
+- `.times`: Executes a block a specific number of times.
+- `.each_with_index`: Provides the current element and it's index.
+
+
+### Specialized Iteration & Enumerators
+
+- `.step`: Iterates over ranges with a specific step.
+
+- [loops](loops.rb)
+
