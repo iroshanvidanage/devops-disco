@@ -8,15 +8,16 @@ categorize_animals() {
         dog|cat|lion)
             echo "Mammal"
             ;;
-        eagle|penguin|sparrow
+        eagle|penguin|sparrow)
             echo "Bird"
             ;;
-        snake|lizards|turtle
+        snake|lizards|turtle)
             echo "Reptile"
-        *
+            ;;
+        *)
             echo "Unknown animal class"
             ;;
-
+    esac
 }
 
 categorize_animal
