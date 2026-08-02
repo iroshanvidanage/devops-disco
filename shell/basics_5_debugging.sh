@@ -3,7 +3,7 @@
 
 #!/bin/bash
 
-categorize_animals() {
+categorize_animal() {
     case $1 in
         dog|cat|lion)
             echo "Mammal"
@@ -20,6 +20,6 @@ categorize_animals() {
     esac
 }
 
-categorize_animal
+categorize_animal "snake"
 
 exit 0
